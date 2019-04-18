@@ -1,0 +1,60 @@
+In implementare am folosit liste simplu inlantuite.
+
+Functii utilizate:
+
+->	int comanda(char ch2[]) - Compara sirul de caractere citit (primele doua
+caractere de pe fiecare linie din fisierul commandsX.txt) cu ie, ee, de etc si
+returneaza un int in functie de care se va decide ramura din switch-ul destinat
+efectuarii comenzilor. Restul elementelor de pe linie se citesc in functie de
+rezultatul functiei.
+
+->	void insert(List *linie, int bucla, int index, char nume, char s_nod, int *BUCLA,
+int *INDEX) - In BUCLA si INDEX se retin "coordonatele" comenzii de [un] (undo);
+acestea se vor memora pe stiva. La executarea comenzii [un] se va sterge elementul de
+coordonate BUCLA, INDEX. Bucla si indexul citite din fisier vor coincide cu BUCLA,
+respectiv INDEX numai in cazul (snod == F). Inserarea, precum si stergerea elementelor
+cu index 0 reprezinta cazuri particulare.
+
+->	void delete(List *linie, int bucla, int index, char *nume, char *snod, int *POZ)
+In POZ se retine pozitia din lista pe care se afla elemntul sters. POZ va fi memorat
+in stiva (in locul buclei) si va fi utilizat pentru operatia [un]. [nume] si [snod]
+ se retin pe stiva.
+ 
+->	void edit(List *linie, int bucla, int index, char nume, char s_nod, char *nume_st,
+char *snod_st, int *POZ) - POZ retine pozitia. Se retin in [nume_st] si [snod_st]
+valorile inainte de schimbare; se vor memora pe stiva.
+
+->	void edit_undo(List *linie, int poz, char nume, char s_nod) - Editeaza elementul
+(in urma comenzii [un]).
+
+->	void insert_undo(List *linie, int POZ, char nume, char s_nod) - Insereaza un element
+in lista, pe pozitia POZ (in urma comenzii [un]).
+
+->	List reverse(List prim) - Functie recursiva ce inverseaza elementele listei date.
+
+->	void print(List *prim1, FILE *f_out) - [pl]: Afiseaza lista specificata.
+
+->	void print_reversed(List *prim1, FILE *f_out) - [pr]: Este o functie recursiva.
+Porneste de la al doilea element al listei, urmand ca pe primul sa il afiseze la apelul
+functiei [ void print_first(List *prim1, FILE *f_out) ].
+
+->	int print_valid(List *prim1, List *prim2) - [pv]: Parcurge in paralel listele
+pana cand se ajunge la sfarsitul uneia, si se verifica corespondentele A-T, G-C; daca
+nu corespund se returneaza 0. Se returneaza 1 daca s-a ajuns la sfarsitul ambelor
+liste. Altfel (daca nu au aceeasi lungime), se returneaza 0.
+
+
+Functii pentru stiva de comenzi:
+
+->	int top(int *linie, int *bucla, int *index, char *nume, char *s_nod, Stack *s)
+Analizeaza elementul din varful stivei si returneaza valori intre -1 si 4. In functie
+de valoarea returnata se decide ce operatie se efectueaza in urma comenzii [un].
+
+->	void printstack(Stack *s, FILE *f_out) - Afisare stiva.
+
+->	Stack *initstack(Stack *s) - Initializare stiva.
+
+->	Stack* push(char comanda[], int linie, int bucla, int index, char nume,
+char s_nod, Stack *s) - Adauga un element in stiva.
+
+->	Stack* pop(Stack *s) - Sterge elementul din varful stivei.
